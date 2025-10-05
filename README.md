@@ -269,4 +269,4 @@ This project is open source and available under the MIT License.
 
 **Team Members:** [Add your team member names and roles]  
 **Contact:** [Add contact information]  
-**Repository:** https://github.com/[your-username]/sky-forecaster
+**Repository:** https://github.com/diya1008/Sky-Forecaster
