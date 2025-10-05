@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sky Forecaster - Air Quality Monitoring</title>
+    <meta name="description" content="Real-time air quality monitoring and forecasting using NASA EarthData">
+    
+    <!-- Leaflet.js CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin=""/>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>🌤️ Sky Forecaster</h1>
+                    <p>NASA Space Apps Challenge 2025</p>
+                </div>
+                <nav class="nav">
+                    <button class="nav-toggle" aria-label="Toggle navigation">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <ul class="nav-menu">
+                        <li><a href="#current" class="nav-link active">Current</a></li>
+                        <li><a href="#forecast" class="nav-link">Forecast</a></li>
+                        <li><a href="#about" class="nav-link">About</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Location Input Section -->
+            <section class="location-section">
+                <div class="location-input">
+                    <h2>Enter Location</h2>
+                    <div class="input-group">
+                        <input type="text" id="locationInput" placeholder="Enter city, coordinates, or address" 
+                               class="location-field" autocomplete="off">
+                        <button id="getCurrentLocationBtn" class="location-btn" title="Use current location">
+                            📍
+                        </button>
+                        <button id="searchLocationBtn" class="search-btn">Search</button>
+                    </div>
+                    <div class="location-error" id="locationError"></div>
+                    <div class="test-buttons" style="margin-top: 10px; text-align: center;">
+                        <button id="testApiBtn" class="test-btn" style="background-color: #28a745; color: white; padding: 8px 16px; border: none; border-radius: 4px; margin-right: 10px;">Test API</button>
+                        <button id="clearErrorBtn" class="test-btn" style="background-color: #6c757d; color: white; padding: 8px 16px; border: none; border-radius: 4px;">Clear Errors</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Loading Indicator -->
+            <div class="loading" id="loadingIndicator">
+                <div class="spinner"></div>
+                <p>Loading air quality data...</p>
+            </div>
+
+            <!-- Error Message -->
+            <div class="error-message" id="errorMessage">
+                <div class="error-content">
+                    <span class="error-icon">⚠️</span>
+                    <span class="error-text"></span>
+                </div>
+                <button class="error-close" id="errorClose">×</button>
+            </div>
+
+            <!-- Current Conditions Section -->
+            <section id="current" class="section current-section">
+                <h2>Current Air Quality</h2>
+                <div class="current-content" id="currentContent">
+                    <!-- Current conditions will be populated here -->
+                </div>
+            </section>
+
+            <!-- Forecast Section -->
+            <section id="forecast" class="section forecast-section">
+                <h2>Air Quality Forecast</h2>
+                <div class="forecast-controls">
+                    <label for="forecastHours">Forecast Period:</label>
+                    <select id="forecastHours" class="forecast-select">
+                        <option value="24">24 Hours</option>
+                        <option value="48">48 Hours</option>
+                        <option value="72">72 Hours</option>
+                        <option value="168">7 Days</option>
+                    </select>
+                </div>
+                <div class="forecast-content" id="forecastContent">
+                    <!-- Forecast data will be populated here -->
+                </div>
+            </section>
+
+            <!-- Map Section -->
+            <section class="map-section">
+                <h2>Interactive Map</h2>
+                <div class="map-container">
+                    <div id="map" class="map"></div>
+                    <div class="map-controls">
+                        <button id="centerMapBtn" class="map-btn">Center on Location</button>
+                        <button id="toggleLayersBtn" class="map-btn">Toggle Layers</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section id="about" class="section about-section">
+                <h2>About Sky Forecaster</h2>
+                <div class="about-content">
+                    <p>
+                        Sky Forecaster is a data-driven web application built for the NASA Space Apps Challenge 2025 
+                        "From EarthData to Action" challenge. It utilizes NASA's Earth observation data and cloud 
+                        computing to provide real-time air quality monitoring and forecasting.
+                    </p>
+                    <div class="features">
+                        <h3>Features</h3>
+                        <ul>
+                            <li>Real-time air quality monitoring using NASA EarthData</li>
+                            <li>Interactive mapping with Leaflet.js</li>
+                            <li>AQI calculation and forecasting</li>
+                            <li>Responsive design for mobile and desktop</li>
+                            <li>Clean separation of concerns between backend and frontend</li>
+                        </ul>
+                    </div>
+                    <div class="data-sources">
+                        <h3>Data Sources</h3>
+                        <ul>
+                            <li>NASA TEMPO (Tropospheric Emissions: Monitoring of Pollution)</li>
+                            <li>OpenAQ Community Platform</li>
+                            <li>NASA Atmospheric Infrared Sounder (AIRS)</li>
+                            <li>Ground Station Networks (Pandora, TOLNet)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 Sky Forecaster - NASA Space Apps Challenge</p>
+                <p>Built with ❤️ using NASA EarthData and OpenAQ</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Leaflet.js JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
+    
+    <!-- Custom JavaScript -->
+    <script src="js/utils.js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
