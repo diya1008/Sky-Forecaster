@@ -4,9 +4,8 @@
 
 **Project Name:** Sky Forecaster  
 **Challenge:** From EarthData to Action: Cloud Computing with Earth Observation Data for Predicting Cleaner, Safer Skies  
-**Team:** [Your Team Name]  
-**Event:** [Your Local Event Name]
-
+**Team:** Mambacita  
+**Event:** Nirma University
 ---
 
 ## High-Level Project Summary
@@ -217,8 +216,7 @@ Sky Forecaster provides:
 
 ## Demo Links
 
-**Project Demo**: [Link to 30-second video or 7-slide presentation]  
-**Final Project**: [Link to live demo or GitHub repository]
+**Project Demo**: https://drive.google.com/file/d/1CVGEYekDH6Xb-Fy51M9mf42EJ-xqkj0N/view?usp=sharing
 
 ---
 
