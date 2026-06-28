@@ -1,4 +1,4 @@
-# Sky Forecaster 🌤️
+### Sky Forecaster 🌤️
 
 ## NASA Space Apps Challenge 2025 Submission
 
